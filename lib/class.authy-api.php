@@ -60,7 +60,9 @@ class AuthyAPI {
     $args['user-agent'] = 'AuthyWordPress/'. AUTHY_VERSION. ' ('. PHP_OS. '; WordPress ' . $GLOBALS['wp_version'] . ')';
 
     $api_response = wp_remote_request($url, $args);
-    error_log("[Authy] API response: " . print_r( $api_response, true ));
+    if ( WP_DEBUG ) {
+		error_log("[Authy] API response: " . print_r( $api_response, true ));
+	}
     $status_code = wp_remote_retrieve_response_code($api_response);
 
     $body = wp_remote_retrieve_body($api_response);

@@ -178,18 +178,26 @@ class AuthyUserLogin {
     public function login_with_2FA( $user, $signature, $authy_token, $redirect_to, $remember_me ) {
         $this->intercept_authentication();
         $authy_user = new AuthyUser($user->ID);
-        error_log("[Authy] User {$user->ID} login with 2fa");
+        if ( WP_DEBUG ) {
+			error_log("[Authy] User {$user->ID} login with 2fa");
+		}
 
         if ( $authy_user->verify_signature($signature) ) {
-            error_log("[Authy] Signature verified when login with 2fa for user {$user->ID} ");
+            if ( WP_DEBUG ) {
+				error_log("[Authy] Signature verified when login with 2fa for user {$user->ID} ");
+			}
             $authy_user->set_signature($reset = true);
             $token_response = $authy_user->verify_token($authy_token);
-            error_log("[Authy] Token response for user {$user->ID}: " . print_r( $token_response, true ));
+            if ( WP_DEBUG ) {
+				error_log("[Authy] Token response for user {$user->ID}: " . print_r( $token_response, true ));
+			}
             if ( $token_response === true || $token_response === 1 ) {
                 // If remember me is set the cookies will be kept for 14 days.
                 $remember_me = ($remember_me == 'forever') ? true : false;
                 wp_set_auth_cookie( $user->ID, $remember_me );
-                error_log("[Authy] Redirecting user {$user->ID} to {$redirect_to}");
+                if ( WP_DEBUG ) {
+					error_log("[Authy] Redirecting user {$user->ID} to {$redirect_to}");
+				}
                 wp_safe_redirect( $redirect_to );
                 exit();
             } elseif ( is_string($token_response) ) {
