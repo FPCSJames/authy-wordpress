@@ -4,7 +4,7 @@ This plugin adds [Authy](http://www.authy.com) two-factor authentication to Word
 
 With Authy, you can secure your WordPress user accounts with two-factor authentication.
 
-Tested from WordPress version 3.9 to 4.5.3
+Tested from WordPress version 3.9 to 4.8.3
 
 Usually you use only a username and a password to login to your blog. If your password is stolen or guessed, someone else can now login to your blog. Therefore with two-factor authentication, you use an additional step to login and one that uses something you have in your possession that is harder to steal.
 

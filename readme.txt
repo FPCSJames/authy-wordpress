@@ -2,8 +2,8 @@
 Contributors: authy, ethitter
 Tags: authy, authentication, two factor, security, login, 2fa, two step authentication, password, admin, mobile, mfa, otp, multi-factor, oauth, android, iphone, sso, strong authentication, two-step verification
 Requires at least: 3.9
-Tested up to: 4.5.3
-Stable tag: 3.0.1
+Tested up to: 4.8.3
+Stable tag: 3.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -78,6 +78,13 @@ As an admin, you can go to the users page. Then, select the user in the list, an
 3. Authentication with Time-based One-time password (TOTP).
 
 == Changelog ==
+
+= 3.0.2 =
+* Added missed `name` attribute to `submit` input.
+* Added defer to onetouch js.
+* Reduce verbosity of logging unless WP_DEBUG set to true.
+* Added japanese translation.
+* Disable autocomplete for token input.
 
 = 3.0.1 =
 * Fixed error in some filenames.

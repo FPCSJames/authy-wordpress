@@ -30,7 +30,7 @@
         <label for="authy_token">
           <?php _e( 'Authy Token', 'authy' ); ?>
           <br>
-          <input type="text" name="authy_token" id="authy-token" class="input" value="" size="20" autofocus="true" />
+          <input type="text" name="authy_token" id="authy-token" class="input" value="" size="20" autofocus="true" autocomplete="off" />
         </label>
         <input type="hidden" name="redirect_to" value="<?php echo esc_attr( $redirect ); ?>"/>
         <input type="hidden" name="username" value="<?php echo esc_attr( $username ); ?>"/>
@@ -39,11 +39,11 @@
           <input type="hidden" name="authy_signature" value="<?php echo esc_attr( $signature[AUTHY_SIGNATURE_KEY] ); ?>"/>
         <?php endif; ?>
         <?php if( $is_onetouch ): ?>
-          <input type="hidden" class="onetouch-request" name="onetouch_uuid" value="<?php echo esc_attr( $onetouch_request['uuid'] ); ?>"/>          
+          <input type="hidden" class="onetouch-request" name="onetouch_uuid" value="<?php echo esc_attr( $onetouch_request['uuid'] ); ?>"/>
         <?php endif; ?>
 
         <p class="submit">
-          <input type="submit" value="<?php echo esc_attr_e( 'Login', 'authy' ) ?>" id="wp_submit" class="button button-primary button-large" />
+          <input type="submit" value="<?php echo esc_attr_e( 'Login', 'authy' ) ?>" name="wp-submit" id="wp_submit" class="button button-primary button-large" />
         </p>
       </form>
 
