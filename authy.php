@@ -41,8 +41,7 @@ if (!class_exists('Authy')) {
          require_once(AUTHY_PATH . 'lib/class.authy-user-login.php');
 
          // Load translations
-         load_plugin_textdomain( 'authy', false,
-         dirname( AUTHY_BASENAME ) . '/languages' );
+         load_plugin_textdomain( 'authy', false, dirname( AUTHY_BASENAME ) . '/languages' );
 
          add_action('plugins_loaded', array('AuthyAdmin', 'instance'));
          add_action('plugins_loaded', array('AuthyUserProfile', 'instance'));
@@ -50,7 +49,6 @@ if (!class_exists('Authy')) {
       }
 
       private function define_constants() {
-         if (!defined('AUTHY_DEBUG')) define('AUTHY_DEBUG', false);
          define('AUTHY_VERSION', '3.0.2');
          define('AUTHY_PLUGIN_NAME', 'Authy Two-Factor Authentication');
          define('AUTHY_PATH', plugin_dir_path(__FILE__));
