@@ -27,6 +27,12 @@ class AuthySettings {
             'label'     => __( "Disable external apps that don't support Two-factor Authentication", 'authy' ),
             'type'      => 'checkbox',
             'sanitizer' => null,
+         ),
+         array(
+            'name'      => 'disable_ssl_check',
+            'label'     => __( "Disable verifying SSL CA bundle on every page load", 'authy' ),
+            'type'      => 'checkbox',
+            'sanitizer' => null,
          )
       );
    }
@@ -38,6 +44,7 @@ class AuthySettings {
             'api_key_production'  => '',
             'environment'         => apply_filters( 'authy_environment', 'production' ),
             'disable_xmlrpc'      => "true",
+            'disable_ssl_check'   => ''
          ) );
       }
       return isset( $this->settings[ $key ] ) ? $this->settings[ $key ] : null;
@@ -120,6 +127,7 @@ class AuthySettings {
       add_settings_field( 'api_key_production', __( 'Authy Production API Key', 'authy' ), array( $this, 'add_settings_api_key' ), AUTHY_SETTINGS_PAGE, 'default' );
       add_settings_field( 'authy_roles', __( 'Allow Authy for the following roles', 'authy' ), array( $this, 'add_settings_for_roles' ), AUTHY_SETTINGS_PAGE, 'default' );
       add_settings_field( 'disable_xmlrpc', __( "Disable external apps that don't support Two-factor Authentication", 'authy' ), array( $this, 'add_settings_disable_xmlrpc' ), AUTHY_SETTINGS_PAGE, 'default' );
+      add_settings_field( 'disable_ssl_check', __( "Disable checking SSL CA bundle on every dashboard page.", 'authy' ), array( $this, 'add_settings_disable_ssl_check' ), AUTHY_SETTINGS_PAGE, 'default' );
    }
 
    /**
@@ -179,6 +187,23 @@ class AuthySettings {
       <p class ='description'><?php _e( "WordPress mobile app's don't support Two-Factor authentication. If you disable this option you will be able to use the apps but it will bypass Two-Factor Authentication.", 'authy' ); ?></p>
       <?php
    }
+
+   /**
+   * Render settings disable SSL/TLS CA bundle check on page load
+   *
+   * @return string
+   */
+   public function add_settings_disable_ssl_check() {
+      $value = $this->get( 'disable_ssl_check' ) != "false";
+      ?>
+      <label for='<?php echo esc_attr( AUTHY_SETTINGS_KEY ); ?>[disable_ssl_check]'>
+         <input name="<?php echo esc_attr( AUTHY_SETTINGS_KEY ); ?>[disable_ssl_check]" type="checkbox" value="true" <?php if ($value) echo 'checked="checked"'; ?> >
+         <span style='color: #bc0b0b;'><?php _e( 'Disable SSL CA bundle verification on page load.' , 'authy' ); ?></span>
+      </label>
+      <p class ='description'><?php _e( "To ensure a secure connection to the Authy API can be established, this plugin attempts to ping the API on every page load within the WordPress dashboard. If you are sure your environment's CA bundle is kept up to date, enable this to save page load time and prevent timeouts.", 'authy' ); ?></p>
+      <?php
+   }
+
 
    /**
    * Return settings application name

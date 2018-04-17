@@ -25,7 +25,7 @@ class AuthyAdmin {
       add_filter( 'plugin_action_links_' . AUTHY_BASENAME, array( $this,
       'filter_plugin_action_links' ), 10, 2 );
 
-      if ($this->api->ready()) {
+      if ($this->settings->get( 'disable_ssl_check' ) !== "true" && $this->api->ready()) {
          // Display notices
          add_action( 'admin_notices', array( $this, 'action_admin_notices' ) );
       }
