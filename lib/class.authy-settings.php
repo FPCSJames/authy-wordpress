@@ -44,7 +44,7 @@ class AuthySettings {
             'api_key_production'  => '',
             'environment'         => apply_filters( 'authy_environment', 'production' ),
             'disable_xmlrpc'      => "true",
-            'disable_ssl_check'   => ''
+            'disable_ssl_check'   => "false"
          ) );
       }
       return isset( $this->settings[ $key ] ) ? $this->settings[ $key ] : null;
