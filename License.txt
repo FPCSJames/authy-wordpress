@@ -4,5 +4,5 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Contributors:
 ethitter(http://www.ethitter.com):https://github.com/ethitter/Authy-for-WP 
 Authy(https://www.authy.com):https://github.com/authy/authy-wordpress
-
+FPCSJames(https://www.flashpointcs.net):https://github.com/FPCSJames/authy-wordpress
 

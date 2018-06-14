@@ -79,6 +79,9 @@ As an admin, you can go to the users page. Then, select the user in the list, an
 
 == Changelog ==
 
+= 3.0.2-fpcs =
+* Added option to disable CA bundle checking on every admin page load.
+
 = 3.0.2 =
 * Added missed `name` attribute to `submit` input.
 * Added defer to onetouch js.
